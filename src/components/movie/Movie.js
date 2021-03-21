@@ -1,5 +1,5 @@
 import React from "react";
-// import "./Movie.scss";
+import "./Movie.css";
 
 const Movie = ({ movie, seen }) => {
   return (

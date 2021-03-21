@@ -38,17 +38,17 @@ module.exports = {
                     encodeURIComponent(user.activationKey),
                 en: {
                     text_1: "Welcome",
-                    text_2: "Thanks for signing up on Hyperflix! Please activate your account to enjoy our collection of movies and TV shows.",
+                    text_2: "Thanks for signing up on HyperTube! Please activate your account to enjoy our collection of movies and TV shows.",
                     button: "Activate"
                 },
                 fr: {
                     text_1: "Bienvenue",
-                    text_2: "Merci de votre inscription sur Hyperflix ! Veuillez activer votre compte pour profiter de notre collection de films.",
+                    text_2: "Merci de votre inscription sur HyperTube ! Veuillez activer votre compte pour profiter de notre collection de films.",
                     button: "Activer"
                 },
                 es: {
                     text_1: "Bienvenido",
-                    text_2: "Gracias por registrar en Hyperflix! Por favor activa tu cuenta para disfrutar de nuestra collecíon de películas.",
+                    text_2: "Gracias por registrar en HyperTube! Por favor activa tu cuenta para disfrutar de nuestra collecíon de películas.",
                     button: "Activar"
                 }
             };
@@ -58,9 +58,9 @@ module.exports = {
             message = data.toString();
             transporter.sendMail(
                 {
-                    from: "no-reply@hyperflix.com",
+                    from: "no-reply@hypertube.com",
                     to: user.email,
-                    subject: `${user.language === "es" ? "Bienvenido en" : user.language === "fr" ? "Bienvenue sur" : "Welcome to"} HyperFlix`,
+                    subject: `${user.language === "es" ? "Bienvenido en" : user.language === "fr" ? "Bienvenue sur" : "Welcome to"} HyperTube`,
                     html: message
                         .replace(search.username, replace.username)
                         .replace(search.link, replace.link)
@@ -138,9 +138,9 @@ module.exports = {
             message = data.toString();
             transporter.sendMail(
                 {
-                    from: "no-reply@hyperflix.com",
+                    from: "no-reply@hypertube.com",
                     to: user.email,
-                    subject: `HyperFlix - ${user.language === "es" ? "Contraseña olvidada" : user.language === "fr" ? "Mot de passe oublié" : "Forgot Password"} `,
+                    subject: `HyperTube - ${user.language === "es" ? "Contraseña olvidada" : user.language === "fr" ? "Mot de passe oublié" : "Forgot Password"} `,
                     html: message
                         .replace(search.username, replace.username)
                         .replace(search.link, replace.link)

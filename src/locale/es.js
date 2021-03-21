@@ -1,7 +1,7 @@
 var customLanguage = {
   home: [
     {
-      line1: "Disfrute una larga selección de películas en HyperFlix",
+      line1: "Disfrute una larga selección de películas en HyperTube",
       line2: "Tan solo un par de cliks le separa de la aventura...",
       line3: "Sin tarjeta de crédito - Es gratis!",
       try_it: "PRUEBELO YA"

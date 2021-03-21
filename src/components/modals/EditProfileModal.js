@@ -1,7 +1,7 @@
 import React, { useReducer, useState, useContext } from "react";
 import { withRouter } from "react-router-dom";
 import { Modal, Select } from "react-materialize";
-// import "./Modals.scss";
+import "./Modals.css";
 import UserPictureModify from "../../components/pictures/UserPictureModify";
 import {
     FunctionButtonRegular,

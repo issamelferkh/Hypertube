@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-// import "./MoviesList.scss";
+import "./MoviesList.css";
 
 const MoviesPosters = ({ movies }) => {
   const MovieItem = ({ imdbId, title, poster }) => (

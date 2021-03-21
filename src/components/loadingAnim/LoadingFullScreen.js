@@ -1,6 +1,6 @@
 import React from "react";
 import ReactLoading from 'react-loading';
-// import "./Loading.scss";
+import "./Loading.css";
 
 const LoadingBar = ({ type, color }) => (
 	<ReactLoading type={type} color={color} height={222} width={125} />

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { withRouter } from "react-router-dom";
 import withAuth from "../../services/withAuth";
-// import "./MoviePage.scss";
+import "./MoviePage.css";
 import Navbar from "../../components/navbar/NavBar";
 import Loading from "../../components/loadingAnim/LoadingFullScreen";
 import axios from "axios";

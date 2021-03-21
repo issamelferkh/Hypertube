@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import NavBar from "../../components/navbar/NavBar";
 import withAuth from "../../services/withAuth";
 import UserPictureView from "../../components/pictures/UserPictureView";
-// import "./UserProfile.scss";
+import "./UserProfile.css";
 import { FunctionButtonSecondary } from "../../components/buttons/Buttons";
 import MoviesPosters from "../../components/lists/MoviesPosters";
 import UsersList from "../../components/lists/UsersList";

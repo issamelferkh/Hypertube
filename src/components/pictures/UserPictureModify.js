@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-// import "./pictures.scss";
+import "./pictures.css";
 import ValidatePicture from "../../services/ValidatePicture";
 import ErrorToast from "../../services/toasts/ErrorToasts";
 import DefaultUserPic from "../../assets/default_user.png";

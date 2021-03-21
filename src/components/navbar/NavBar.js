@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import "./NavBar.scss";
+import "./NavBar.css";
 import AuthService from "../../services/AuthService";
 import { withRouter, NavLink } from "react-router-dom";
 import { LoginButton, RegisterButton } from "../buttons/Buttons";
@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import logo from "../../assets/hyperflix_logo2.png";
+import logo from "../../assets/hypertube_logo2.png";
 import { GlobalContext } from "../../context/GlobalContext";
 import CountryPicker from "../buttons/CountryPicker";
 import DefaultUserPic from "../../assets/default_user.png";

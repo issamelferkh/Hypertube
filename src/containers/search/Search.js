@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import withAuth from "../../services/withAuth";
-// import "./Search.scss";
+import "./Search.css";
 import Movie from "../../components/movie/Movie";
 import Search from "../../components/searchBar/SearchBar";
 import Navbar from "../../components/navbar/NavBar";

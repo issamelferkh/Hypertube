@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import "./Login.scss";
+import "./Login.css";
 import "materialize-css/dist/css/materialize.min.css";
 import NavBar from "../../components/navbar/NavBar";
 import { NavLink } from "react-router-dom";

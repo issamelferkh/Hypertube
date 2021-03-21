@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
-// import "./LandingPage.scss";
+import "./LandingPage.css";
 import Navbar from "../../components/navbar/NavBar";
 import AuthService from "../../services/AuthService";
 import { LpBigButton } from "../../components/buttons/BigButtons";

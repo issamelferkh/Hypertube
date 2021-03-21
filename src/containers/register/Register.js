@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "materialize-css/dist/css/materialize.min.css";
-// import "./Register.scss";
+import "./Register.css";
 import NavBar from "../../components/navbar/NavBar";
 import { NavLink } from "react-router-dom";
 import ValidateInput from "../../services/ValidateInput";

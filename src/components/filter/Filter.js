@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-// import "./Filter.scss";
+import "./Filter.css";
 import Slider from "rc-slider";
 import { GlobalContext } from "../../context/GlobalContext";
 import SearchContext from '../../context/SearchContext'

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import "./UsersList.scss";
+import "./UsersList.css";
 import DefaultUserPic from "../../assets/default_user.png";
 
 const UsersList = ({ users }) => {

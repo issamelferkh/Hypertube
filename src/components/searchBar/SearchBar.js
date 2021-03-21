@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-// import "../buttons/Buttons.scss";
-// import "./SearchBar.scss";
+import "../buttons/Buttons.css";
+import "./SearchBar.css";
 import { GlobalContext } from "../../context/GlobalContext";
 import CustomLanguage from "../../services/DefineLocale";
 /* import SearchContext from '../../context/SearchContext' */
