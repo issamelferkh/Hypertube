@@ -2,26 +2,23 @@ const axios = require("axios");
 const MovieSchema = require("../schemas/Movie");
 
 async function connectDB() {
-  console.log("Connecting to MongoDB database...");
   const mongoose = require("mongoose");
   mongoose.set("useNewUrlParser", true);
   mongoose.set("useFindAndModify", false);
   mongoose.set("useCreateIndex", true);
   mongoose.set("useUnifiedTopology", true);
-  /* await mongoose.connect(
-        "mongodb+srv://Team:Apkm5VCrxWTRPYxK@cluster0-shqxc.mongodb.net/hypertube_db?retryWrites=true&w=majority",
-        {
-          useUnifiedTopology: true,
-          useNewUrlParser: true
-        }
-      ); */
-  await mongoose.connect("mongodb://localhost:27017/hypertube_db", {
+  await mongoose.connect(
+    "mongodb+srv://hypertube_user:hypertube_pwd@cluster0.jl0fx.mongodb.net/hypertube_db?retryWrites=true&w=majority",
+    {
     useUnifiedTopology: true,
     useNewUrlParser: true
   });
-  // var db = mongoose.connection;
-  // works only if the collection already exists
-  await mongoose.connection.dropCollection("movies");
+
+  console.log("--- Removing Existing Movies ---");
+  await mongoose.connection.dropCollection("movies_new");
+
+  console.log("--- Create New Movies Collection ---");
+  await mongoose.connection.createCollection("movies_new");
 }
 
 const scrapYTS = async () => {
@@ -32,11 +29,10 @@ const scrapYTS = async () => {
       `https://yts.lt/api/v2/list_movies.json?limit=50&page=${i}`
     );
     if (!res.data.data.movies) break;
-    console.log(
-      `YTS ${res.data.data.movies.length} movie(s) found on page ${i}.`
-    );
+      console.log(`-> YTS ${res.data.data.movies.length} movie(s) found on page ${i}.`);
     raw.push(...res.data.data.movies);
   }
+
   const formated = raw.map(movie => {
     const torrents = [];
     for (const item in movie.torrents) {
@@ -75,21 +71,24 @@ const scrapYTS = async () => {
 
 const scrapPopcorn = async () => {
   const raw = [];
-  for (let i = 1; i <= 270; i++) {
+  for (let i = 1; i <= 2; i++) {
     //271
     try {
       const res = await axios.get(
-        `https://tv-v2.api-fetch.website/movies/${i}`
+        `http://api.pctapi.com/list`
+        // http://api.pctapi.com/list =>  look at this
       );
-      console.log(`POPCORN ${res.data.length} movie(s) found on page ${i}.`);
-      raw.push(...res.data);
+      console.log(`-> POPCORN ${res.data.MovieList.length} movie(s) found on page ${i}.`);
+      raw.push(...(res.data.MovieList));
     } catch (err) {
-      console.log(err.message);
+      console.log("aaa"+err.message);
       continue;
     }
   }
+
   const formated = raw.map(movie => {
     const torrents = [];
+
     for (const language in movie.torrents) {
       for (const quality in movie.torrents[language]) {
         const torrent = {
@@ -105,6 +104,7 @@ const scrapPopcorn = async () => {
         torrents.push(torrent);
       }
     }
+
     const infos = {
       imdbId: movie.imdb_id,
       title: movie.title,
@@ -112,13 +112,14 @@ const scrapPopcorn = async () => {
       plot: movie.synopsis,
       runtime: parseInt(movie.runtime),
       trailer: movie.trailer,
-      poster: movie.images.poster,
+      poster: movie.poster_big,
       genres: movie.genres
         ? movie.genres.map(genre => genre.toLowerCase())
         : null,
       rating: movie.rating.percentage / 10,
       torrents: torrents
     };
+
     return infos;
   });
   return formated;
@@ -131,6 +132,8 @@ const Scrap = async () => {
     const popcornRes = await scrapPopcorn();
 
     const completeRawResult = ytsRes.concat(popcornRes);
+    // console.log(completeRawResult);
+    
     const filteredResults = [];
     completeRawResult.map(movie => {
       for (i = 0; i < filteredResults.length; i++) {
@@ -146,7 +149,7 @@ const Scrap = async () => {
       filteredResults.push(movie);
     });
 
-    console.log("*** Removing duplicates ***");
+    console.log("--- Removing Duplicates Movies ---");
 
     for (i = 0; i < completeRawResult.length; i++) {
       for (j = 0; j < completeRawResult.length; j++) {
@@ -161,7 +164,7 @@ const Scrap = async () => {
       }
     }
 
-    console.log("*** Removing movies without poster ***");
+    console.log("--- Removing Movies Without Poster ---");
 
     var movieList = completeRawResult;
     for (var a = 0; a < movieList.length; a++) {
@@ -172,13 +175,15 @@ const Scrap = async () => {
       }
     }
 
-    console.log("PUSHING TO DATABASE");
+    console.log("--- Pushing To DataBase ---");
     await MovieSchema.collection.insertMany(movieList);
   } catch (error) {
-    log(error);
+    console.log(error);
   } finally {
     process.exit(0);
   }
 };
 
 Scrap();
+
+

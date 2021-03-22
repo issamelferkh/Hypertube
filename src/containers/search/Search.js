@@ -16,7 +16,7 @@ const SearchView = () => {
     genre: "All",
     page: 1,
     ratings: [0, 10],
-    years: [1915, 2019],
+    years: [1900, 2021],
     keywords: "",
     limit: 40
   });

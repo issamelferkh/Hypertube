@@ -1,5 +1,5 @@
 import Materialize from "materialize-css";
-// import "./Toasts.scss";
+import "./Toasts.css";
 
 export default {
   custom: {
