@@ -4,7 +4,6 @@ import "./Register.css";
 import NavBar from "../../components/navbar/NavBar";
 import { NavLink } from "react-router-dom";
 import ValidateInput from "../../services/ValidateInput";
-import TwitterLogo from "../../assets/Twitter_Logo_WhiteOnBlue.png";
 import GoogleLogo from "../../assets/Google_Logo.png";
 import GithubLogo from "../../assets/Github_Logo.png";
 import SchoolLogo from "../../assets/42_Logo.png";
@@ -71,9 +70,6 @@ class Register extends Component {
   };
   auth42 = () => {
     window.location.replace("http://localhost:5000/auth/42");
-  };
-  authTwitter = () => {
-    window.location.replace("http://localhost:5000/auth/twitter");
   };
 
   handleChange = e => {
@@ -318,12 +314,6 @@ class Register extends Component {
                         onClick={this.auth42}
                         src={SchoolLogo}
                         alt="42 logo"
-                        className="third-party-logo"
-                      ></img>
-                      <img
-                        onClick={this.authTwitter}
-                        src={TwitterLogo}
-                        alt="twitter logo"
                         className="third-party-logo"
                       ></img>
                       <img

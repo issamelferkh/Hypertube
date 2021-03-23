@@ -5,7 +5,6 @@ import NavBar from "../../components/navbar/NavBar";
 import { NavLink } from "react-router-dom";
 import AuthService from "../../services/AuthService";
 import ValidateInput from "../../services/ValidateInput";
-import TwitterLogo from "../../assets/Twitter_Logo_WhiteOnBlue.png";
 import GoogleLogo from "../../assets/Google_Logo.png";
 import GithubLogo from "../../assets/Github_Logo.png";
 import SchoolLogo from "../../assets/42_Logo.png";

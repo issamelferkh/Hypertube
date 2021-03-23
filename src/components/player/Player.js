@@ -11,7 +11,7 @@ class Player extends Component {
         super(props);
         this.state = {
             subEn: undefined,
-            subEs: undefined,
+            subAr: undefined,
             subFr: undefined
         }
         this._isMounted = false;
@@ -88,12 +88,12 @@ class Player extends Component {
           ) : (
             ""
           )}
-          {this.state.subEs !== undefined ? (
+          {this.state.subAr !== undefined ? (
             <track
-              label="Español"
+              label="Darija"
               kind="subtitles"
-              srcLang="es"
-              src={this.state.subEs}
+              srcLang="ar"
+              src={this.state.subAr}
             />
           ) : (
             ""

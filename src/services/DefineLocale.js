@@ -4,8 +4,8 @@ const define = locale => {
     case "en":
       lang = require("../locale/en");
       break;
-    case "es":
-      lang = require("../locale/es");
+    case "ar":
+      lang = require("../locale/ar");
       break;
     case "fr":
       lang = require("../locale/fr");

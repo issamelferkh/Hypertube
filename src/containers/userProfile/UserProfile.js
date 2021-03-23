@@ -26,7 +26,7 @@ const initialState = {
 const languages = {
   en: "English",
   fr: "Français",
-  es: "Español"
+  ar: "Darija"
 };
 
 const reducer = (state, action) => {

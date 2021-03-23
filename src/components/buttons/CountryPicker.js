@@ -71,7 +71,7 @@ export default function DialogSelect() {
                 input={<Input id="locale-native-simple" />}
               >
                 <option value={"en"}>English</option>
-                <option value={"es"}>Español</option>
+                <option value={"ar"}>Darija</option>
                 <option value={"fr"}>Français</option>
               </Select>
             </FormControl>
