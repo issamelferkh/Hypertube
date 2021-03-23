@@ -139,7 +139,7 @@ class Register extends Component {
                     <div className="title-page">
                       {lang.register[0].register}
                     </div>
-                    <div className="register-picture-box">
+                    <div className="register-picture-view">
                       <UserPictureModify pictureToParent={this.handlePicture} />
                     </div>
                     <form

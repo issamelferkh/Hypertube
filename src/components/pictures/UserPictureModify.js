@@ -66,9 +66,9 @@ const UserPictureModify = props => {
   };
 
   return (
-    <div className="user-picture-modify">
+    <div className="user-picture-view">
       <div
-        className="user-picture-box"
+        className="user-picture-view"
         style={{ backgroundImage: "url(" + picture + ")" }}
       ></div>
       <div className="upload-options" onChange={e => handlePictureUpload(e)}>

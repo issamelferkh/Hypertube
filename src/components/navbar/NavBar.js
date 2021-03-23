@@ -16,6 +16,7 @@ import CustomLanguage from "../../services/DefineLocale";
 
 class NavBar extends Component {
   static contextType = GlobalContext;
+  
   constructor(props) {
     super(props);
     this.state = {

@@ -11,7 +11,42 @@
   right: 10px;
 }
 
+.nav-link {
+  display: inline-block;
+}
+
+.nav-link:hover {
+  color: red;
+}
+
+.nav-link-icon {
+  margin: 0px 10px 0px 35px;
+  font-size: 32px !important;
+}
+
+.nav-link-img {
+  width: 35px;
+  height: 35px;
+  border: solid 2px #fff;
+  border-radius: 5px;
+  margin: 0px 10px 0px 35px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.nav-link-img:hover {
+  border-color: red;
+}
+
 /* Mobile menu */
+
+.nav-btns-right-mobile {
+  display: inline-block;
+  position: absolute;
+  right: 10px;
+}
+
 .nav-mobile-menu {
   display: none;
 }
@@ -46,16 +81,27 @@
   color: red;
 }
 
+.btn.btn-regular {
+  background-color: red;
+  margin: 0px 10px;
+}
+
+.btn.btn-regular:hover {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+
 /* Responsive */
+
 @media only screen and (max-width: 992px) {
   .nav-btns-right {
     display: none;
   }
+
   .nav-mobile-menu {
     display: inline;
   }
+
   .brand-logo {
     display: inline;
   }
 }
-/*# sourceMappingURL=NavBar.css.map */

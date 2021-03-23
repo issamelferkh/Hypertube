@@ -54,9 +54,6 @@ class Login extends Component {
   auth42 = () => {
     window.location.replace("http://localhost:5000/auth/42");
   };
-  authTwitter = () => {
-    window.location.replace("http://localhost:5000/auth/twitter");
-  };
 
   handleChange = e => {
     const isLogin = e.target.id === "user-login";
@@ -175,12 +172,7 @@ class Login extends Component {
                         alt="42 logo"
                         className="third-party-logo"
                       ></img>
-                      <img
-                        onClick={this.authTwitter}
-                        src={TwitterLogo}
-                        alt="twitter logo"
-                        className="third-party-logo"
-                      ></img>
+
                       <img
                         onClick={this.authGoogle}
                         src={GoogleLogo}

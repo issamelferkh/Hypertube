@@ -1,8 +1,9 @@
 const express = require('express');
 const app = express();
+require('dotenv').config();
 const http = require("http").Server(app);
-var session = require("express-session");
-var MongoDBStore = require("connect-mongodb-session")(session);
+let session = require("express-session");
+let MongoDBStore = require("connect-mongodb-session")(session);
 const userRoutes = require("./routes/userRoutes");
 const movieRoutes = require("./routes/movieRoutes");
 const searchRoutes = require("./routes/searchRoutes");
@@ -13,21 +14,13 @@ const User = require("./schemas/User");
 const flash = require("connect-flash");
 const schedule = require("node-schedule");
 const mongoose = require("mongoose");
-const connectDB = require('./config/db')
-// const scrap = require('./database/scraping')
-require('dotenv').config();
-
-/* Listenning port */
-const PORT = 5000;
-
-// connect to db
-// connectDB();
+const PORT = process.env.PORT || 5000;
 
 http.listen(PORT, () => {
   console.log("Listening on port: ", PORT);
 });
 
-/* Connexion to Database */
+// Connexion to Database
 mongoose.set("useNewUrlParser", true);
 mongoose.set("useFindAndModify", false);
 mongoose.set("useCreateIndex", true);
@@ -39,21 +32,14 @@ mongoose.connect(
     useNewUrlParser: true
   }
 ); 
-// mongoose.connect("mongodb://localhost:27017/hypertube_db", {
-//   useUnifiedTopology: true,
-//   useNewUrlParser: true
-// });
-var db = mongoose.connection;
+
+let db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
   console.log("Database connected!");
 });
 
-/*  creating store */
-// var store = new MongoDBStore({
-//   uri: "mongodb://localhost:27017/hypertube_db",
-//   collection: "MySessions"
-// });
+// Creating session store
 var store = new MongoDBStore({
   uri:
     process.env.MONGO_URI,
@@ -117,5 +103,3 @@ schedule.scheduleJob("00 59 23 * * *", () => {
     }
   );
 });
-
-// scrap();
