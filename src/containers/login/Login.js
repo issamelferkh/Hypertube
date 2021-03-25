@@ -108,16 +108,19 @@ class Login extends Component {
     return (
       <GlobalContext.Consumer>
         {context => {
+          // recover languge from context
           const locale = context.locale;
-          var lang = CustomLanguage.define(locale);
+          let lang = CustomLanguage.define(locale);
+
           return (
             <div className="App">
               <NavBar />
               <div className="container-background">
                 <div className="row">
-                  <div className="card-panel center auth-card">
+                  <div className="card-panel center auth-card">                  
                     <div className="title-page">{lang.login[0].log_in}</div>
                     <form className="login-form" onSubmit={this.handleSubmit}>
+
                       <div className="input-field col s12">
                         <input
                           type="text"
@@ -134,6 +137,7 @@ class Login extends Component {
                           {lang.login[0].username}
                         </label>
                       </div>
+
                       <div className="input-field col s12">
                         <input
                           type="password"
@@ -150,6 +154,7 @@ class Login extends Component {
                           {lang.login[0].password}
                         </label>
                       </div>
+                      
                       <input
                         type="submit"
                         name="submit"

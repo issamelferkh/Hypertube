@@ -69,6 +69,7 @@ class GlobalContextProvider extends Component {
     this._isMounted = false;
   }
 
+    // invoked after a component is mounted 
     async componentDidMount() {
         this._isMounted = true;
         var token = await this.Auth.getToken();
@@ -101,7 +102,7 @@ class GlobalContextProvider extends Component {
         }
     }
   
-
+    // is invoked before a component is unmounted and destroyed
     componentWillUnmount() {
       this._isMounted = false;
     }
