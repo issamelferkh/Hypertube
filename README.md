@@ -1,6 +1,22 @@
 # Hypertube
 
 ## Hyper Plan
+- Update scrap js +++
+- delete jsx files
+- auteur file
+- build
+- fix email pictures
+- fix fubtitles
+
+- Understand
+  - node flash
+  - node session
+  - how to still loged in
+  - how check if loged or not front and back
+
+
+
+
 ### Jeu: [ ] Finish User Part
 - The app must allow a user to register asking at least an email address, a username, a last name, a first name and a password that is somehow protected.
 - The user must be able to register and connect via Omniauth. You must then implement at least 2 strategies: the 42 strategy and another one of your choice.

@@ -184,6 +184,6 @@ const Scrap = async () => {
   }
 };
 
-Scrap();
+module.exports = Scrap;
 
 
