@@ -1,12 +1,15 @@
 # Hypertube
 
 ## Hyper Plan
-- Update scrap js +++
+- fix email pictures -> Test
+- fix subtitles
+- fix sort
+- fix filter
+- Update scrap js +++ [x]
 - delete jsx files
 - auteur file
+- delete all logs
 - build
-- fix email pictures
-- fix fubtitles
 
 - Understand
   - node flash

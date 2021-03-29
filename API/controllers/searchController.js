@@ -20,11 +20,11 @@ const search = async (req, res) => {
             queryTerms.unshift({ $match: { ...queryTerms.$match, title: { $regex: keywords, $options: "i"}}});
         if (genre !== 'All')
             queryTerms.unshift({ $match: { ...queryTerms.$match, genres: genre.toLowerCase()}});
-            // console.log("Query Terms"+JSON.stringify(queryTerms));
+            console.log("Query Terms"+JSON.stringify(queryTerms));
             
         movieList = await MovieModel.aggregate(queryTerms);
         res.status(200).json(movieList);
-        console.log(movieList);
+        // console.log(movieList);
         
     } catch (error) {
         console.log(error.message);

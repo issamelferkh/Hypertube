@@ -12,6 +12,7 @@ import Loading from "../../components/loadingAnim/LoadingFullScreen";
 import { GlobalContext } from "../../context/GlobalContext";
 
 const SearchView = () => {
+  
   const [searchTerms, setSearchTerms] = useState({
     genre: "All",
     page: 1,
@@ -23,12 +24,14 @@ const SearchView = () => {
   const context = useContext(GlobalContext);
   const [searchResult, setSearchResult] = useState();
 
+
   useEffect(() => {
     let isMounted = true;
     const fetchMovies = async () => {
       try {
-        const res =
-          isMounted && (await axios.post("/search/movies", searchTerms));
+  console.log(searchTerms);
+        
+        const res = isMounted && (await axios.post("/search/movies", searchTerms));
         if (res.data.length !== 0) {
           if (searchTerms.page === 1)
             isMounted && setSearchResult({ movies: [...res.data] });
@@ -97,7 +100,7 @@ const SearchView = () => {
   const handleScroll = () => {
     if (
       window.document.getElementById("infiniteScroll").scrollTop +
-        window.document.getElementById("infiniteScroll").clientHeight >=
+      window.document.getElementById("infiniteScroll").clientHeight >=
       window.document.getElementById("infiniteScroll").scrollHeight - 120
     ) {
       setSearchTerms(p => {

@@ -6,6 +6,12 @@ import SearchContext from '../../context/SearchContext'
 
 const Filter = ({ ratings, years, genre }) => {
 
+  const yearList = [
+    '2021',
+    '2020',
+    '2019'
+  ] 
+
   const genreList = [
     'All',
     'Action',
@@ -36,8 +42,13 @@ const Filter = ({ ratings, years, genre }) => {
     ratings(value);
   };
 
-  const handleYearChanges = value => {
-    years(value);
+  const handleYearChanges = e => {
+    if(e.target.value !== "Year") {
+      years(e.target.value);
+    } else {
+      years([1900, 2021]);
+    }
+    // years(value);
   };
 
   const handleGenreChanges = e => {
@@ -79,19 +90,35 @@ const Filter = ({ ratings, years, genre }) => {
                 max={10}
                 allowCross={false}
                 defaultValue={searchTerms.ratings}
+                // defaultValue={searchTerms.ratings}
                 onAfterChange={handleRatingChanges}
               />
             </div>
-            <div className="YearRange">
+            {/* <div className="YearRange">
               <label>{lang.search[0].year}</label>
               <Range
                 min={1915}
                 max={2019}
-                allowCross={false}
+                allowCross={true}
                 defaultValue={searchTerms.years}
                 onAfterChange={handleYearChanges}
               />
-            </div>
+            </div> */}
+
+            <select
+              className="browser-default" id="genreSelect"
+              onChange={handleYearChanges}
+            >
+              <option defaultValue="Year">Year</option>
+              {yearList.map(year => (
+                <option key={year} 
+                        value={year} 
+                >
+                  {year}
+                </option>
+              ))}
+            </select>
+
             <select className="browser-default"
                     id="genreSelect"
                     onChange={handleGenreChanges}

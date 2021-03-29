@@ -9,7 +9,13 @@ const User = require("../schemas/User");
 const download = require("download");
 const TorrentStream = require("torrent-stream");
 const OS = require("opensubtitles-api");
-const OpenSubtitles = new OS("TemporaryUserAgent");
+// const OpenSubtitles = new OS("TemporaryUserAgent");
+const OpenSubtitles = new OS({
+  useragent:'TemporaryUserAgent',
+  username: 'issamelferkh',
+  password: 'issam123',
+  ssl: true
+});
 
 const options = {
   connections: 100,
@@ -47,14 +53,15 @@ const options = {
 module.exports = {
   getSubtitles: async (req, res, next) => {
     var movieId = req.params.movieId;
-    await OpenSubtitles.search({
-      sublanguageid: ["fre", "eng", "spa"].join(),
+
+    const test = await OpenSubtitles.search({
+      sublanguageid: ["fre", "eng", "arb"].join(),
       extensions: "srt",
       imdbid: movieId
     }).then(async subtitles => {
       var subPath = process.cwd() + "/src/subtitles/";
       var subPathEn = undefined;
-      var subPathEs = undefined;
+      var subPathAr = undefined;
       var subPathFr = undefined;
       if (
         subtitles.en &&
@@ -75,22 +82,22 @@ module.exports = {
         subPathEn = movieId + "_" + "en.vtt";
       }
       if (
-        subtitles.es &&
-        subtitles.es.vtt &&
+        subtitles.ar &&
+        subtitles.ar.vtt &&
         !fs.existsSync(subPath + movieId + "_" + "es.vtt")
       ) {
-        await download(subtitles.es.vtt)
+        await download(subtitles.ar.vtt)
           .then(data => {
             fs.writeFileSync(subPath + movieId + "_" + "es.vtt", data);
           })
           .catch(err => {
             console.log("No spanish subtitles");
           });
-        subPathEs = fs.existsSync(subPath + movieId + "_" + "es.vtt")
+        subPathAr = fs.existsSync(subPath + movieId + "_" + "es.vtt")
           ? movieId + "_" + "es.vtt"
           : undefined;
       } else if (fs.existsSync(subPath + movieId + "_" + "es.vtt")) {
-        subPathEs = movieId + "_" + "es.vtt";
+        subPathAr = movieId + "_" + "es.vtt";
       }
       if (
         subtitles.fr &&
@@ -110,8 +117,8 @@ module.exports = {
       } else if (fs.existsSync(subPath + movieId + "_" + "fr.vtt")) {
         subPathFr = movieId + "_" + "fr.vtt";
       }
-      //console.log(subPathEn, subPathEs, subPathFr);
-      return res.status(200).json({ subPathEn, subPathEs, subPathFr });
+      //console.log(subPathEn, subPathAr, subPathFr);
+      return res.status(200).json({ subPathEn, subPathAr, subPathFr });
     });
   },
 

@@ -16,44 +16,44 @@ class Player extends Component {
         }
         this._isMounted = false;
     }
-    // async componentDidMount() {
-    //     this._isMounted = true;
-    //     this._isMounted &&
-    //     await axios
-    //       .get("/movie/getSubtitles/"+this.props.movieId)
-    //       .then(async res => {
-    //         this._isMounted &&
-    //           await this.setState({
-    //             subEn:
-    //             res.data.subPathEn !== undefined
-    //               ? "/static/" + res.data.subPathEn
-    //               : undefined,
-    //           subEs:
-    //             res.data.subPathEs !== undefined
-    //               ? "/static/" + res.data.subPathEs
-    //               : undefined,
-    //           subFr:
-    //             res.data.subPathFr !== undefined
-    //               ? "/static/" + res.data.subPathFr
-    //               : undefined
-    //             /* subEn:
-    //               res.data.subPathEn !== undefined
-    //                 ? require("../../" + res.data.subPathEn.substr(-26))
-    //                 : undefined,
-    //             subEs:
-    //               res.data.subPathEs !== undefined
-    //                 ? require("../../" + res.data.subPathEs.substr(-26))
-    //                 : undefined,
-    //             subFr:
-    //               res.data.subPathFr !== undefined
-    //                 ? require("../../" + res.data.subPathFr.substr(-26))
-    //                 : undefined */
-    //           });
-    //       })
-    //       .catch(err => {
-    //         //window.location.reload();
-    //       });
-    // }
+    async componentDidMount() {
+        this._isMounted = true;
+        this._isMounted &&
+        await axios
+          .get("/movie/getSubtitles/"+this.props.movieId)
+          .then(async res => {
+            this._isMounted &&
+              await this.setState({
+                subEn:
+                  res.data.subPathEn !== undefined
+                    ? "/static/" + res.data.subPathEn
+                    : undefined,
+                subEs:
+                  res.data.subPathEs !== undefined
+                    ? "/static/" + res.data.subPathEs
+                    : undefined,
+                subFr:
+                  res.data.subPathFr !== undefined
+                    ? "/static/" + res.data.subPathFr
+                    : undefined
+                /* subEn:
+                  res.data.subPathEn !== undefined
+                    ? require("../../" + res.data.subPathEn.substr(-26))
+                    : undefined,
+                subEs:
+                  res.data.subPathEs !== undefined
+                    ? require("../../" + res.data.subPathEs.substr(-26))
+                    : undefined,
+                subFr:
+                  res.data.subPathFr !== undefined
+                    ? require("../../" + res.data.subPathFr.substr(-26))
+                    : undefined */
+              });
+          })
+          .catch(err => {
+            //window.location.reload();
+          });
+    }
     render() {
         return (
         <GlobalContext.Consumer>

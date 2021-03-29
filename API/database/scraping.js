@@ -15,10 +15,10 @@ async function connectDB() {
   });
 
   console.log("--- Removing Existing Movies ---");
-  await mongoose.connection.dropCollection("movies_new");
+  await mongoose.connection.dropCollection("movies");
 
   console.log("--- Create New Movies Collection ---");
-  await mongoose.connection.createCollection("movies_new");
+  await mongoose.connection.createCollection("movies");
 }
 
 const scrapYTS = async () => {
