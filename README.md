@@ -1,12 +1,11 @@
 # Hypertube
 
 ## Hyper Plan
-- fix email pictures -> Test
 - fix subtitles
 - fix sort
 - fix filter
+
 - Update scrap js +++ [x]
-- delete jsx files
 - auteur file
 - delete all logs
 - build
@@ -16,9 +15,6 @@
   - node session
   - how to still loged in
   - how check if loged or not front and back
-
-
-
 
 ### Jeu: [ ] Finish User Part
 - The app must allow a user to register asking at least an email address, a username, a last name, a first name and a password that is somehow protected.

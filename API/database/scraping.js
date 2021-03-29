@@ -23,10 +23,11 @@ async function connectDB() {
 
 const scrapYTS = async () => {
   const raw = [];
-  for (let i = 1; i <= 267; i++) {
+  for (let i = 1; i <= 583; i++) {
     //267
     const res = await axios.get(
-      `https://yts.lt/api/v2/list_movies.json?limit=50&page=${i}`
+      // `https://yts.lt/api/v2/list_movies.json?limit=50&page=${i}`
+      `https://yts.mx/api/v2/list_movies.json?limit=50&page=${i}`
     );
     if (!res.data.data.movies) break;
       console.log(`-> YTS ${res.data.data.movies.length} movie(s) found on page ${i}.`);
@@ -76,7 +77,6 @@ const scrapPopcorn = async () => {
     try {
       const res = await axios.get(
         `http://api.pctapi.com/list`
-        // http://api.pctapi.com/list =>  look at this
       );
       console.log(`-> POPCORN ${res.data.MovieList.length} movie(s) found on page ${i}.`);
       raw.push(...(res.data.MovieList));
