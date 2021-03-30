@@ -1,5 +1,44 @@
 # Hypertube
 
+filtered:
+Genres: select list
+IMDb: starts
+
+      "title": "9+",
+      "imdb": 9
+    },
+    {
+      "title": "8+",
+      "imdb": 8
+    },
+    {
+      "title": "7+",
+      "imdb": 7
+    },
+    {
+      "title": "6+",
+      "imdb": 6
+    },
+    {
+      "title": "5+",
+      "imdb": 5
+    }
+
+    
+Year Released: select list: Issue
+
+
+
+
+
+sortable: select list
+A-Z
+Z-A
+IMDb
+Year Released: OK
+
+
+
 ## Hyper Plan
 - fix subtitles
 - fix sort

@@ -6,14 +6,31 @@ import SearchContext from '../../context/SearchContext'
 
 const Filter = ({ ratings, years, genre }) => {
 
+  const ratingsList = [
+    '9',
+    '8',
+    '7',
+    '6',
+    '5'
+  ]
+
   const yearList = [
-    '2021',
-    '2020',
-    '2019'
+    '1900'	,
+    '1910'	,
+    '1920'	,
+    '1930'	,
+    '1940'	,
+    '1950'	,
+    '1960'	,
+    '1970'	,
+    '1980'	,
+    '1990'	,
+    '2000'	,
+    '2010'	,
+    '2020'	
   ] 
 
   const genreList = [
-    'All',
     'Action',
     'Adventure',
     'Animation',
@@ -38,17 +55,12 @@ const Filter = ({ ratings, years, genre }) => {
 
   const searchTerms = useContext(SearchContext);
 
-  const handleRatingChanges = value => {
-    ratings(value);
-  };
-
   const handleYearChanges = e => {
-    if(e.target.value !== "Year") {
-      years(e.target.value);
+    if(e.target.value !== "All") {
+      years([e.target.value, 2021]);
     } else {
       years([1900, 2021]);
     }
-    // years(value);
   };
 
   const handleGenreChanges = e => {
@@ -60,8 +72,17 @@ const Filter = ({ ratings, years, genre }) => {
     }
   };
 
-  const createSliderWithTooltip = Slider.createSliderWithTooltip;
-  const Range = createSliderWithTooltip(Slider.Range);
+  const handleRatingChanges = e => {
+    if (e.target.value !== "All")
+    {
+      ratings([e.target.value,10]);
+    } else {
+      ratings("All");
+    }
+  };
+
+  // const createSliderWithTooltip = Slider.createSliderWithTooltip;
+  // const Range = createSliderWithTooltip(Slider.Range);
 
   return (
     <GlobalContext.Consumer>
@@ -84,53 +105,75 @@ const Filter = ({ ratings, years, genre }) => {
         return (
           <div className="all">
             <div className="RatingRange">
-              <label>{lang.search[0].rating}</label>
-              <Range
-                min={0}
-                max={10}
-                allowCross={false}
-                defaultValue={searchTerms.ratings}
-                // defaultValue={searchTerms.ratings}
-                onAfterChange={handleRatingChanges}
-              />
+              <label>Rating</label><br/>
+              <select
+                className="browser-default"
+                id="genreSelect"
+                onChange={handleRatingChanges}
+              >
+                <option defaultValue="All">All</option>
+                {ratingsList.map(ratings => (
+                  <option key={ratings} 
+                          value={ratings} 
+                  >
+                    {ratings}+
+                  </option>
+                ))}
+              </select>
             </div>
-            {/* <div className="YearRange">
-              <label>{lang.search[0].year}</label>
-              <Range
-                min={1915}
-                max={2019}
-                allowCross={true}
-                defaultValue={searchTerms.years}
-                onAfterChange={handleYearChanges}
-              />
-            </div> */}
 
-            <select
-              className="browser-default" id="genreSelect"
-              onChange={handleYearChanges}
-            >
-              <option defaultValue="Year">Year</option>
-              {yearList.map(year => (
-                <option key={year} 
-                        value={year} 
-                >
-                  {year}
-                </option>
-              ))}
-            </select>
+            <div className="YearRange">
+              <label>Year</label><br/>
+              <select
+                className="browser-default" id="genreSelect"
+                onChange={handleYearChanges}
+              >
+                <option defaultValue="All">All</option>
+                {yearList.map(year => (
+                  <option key={year} 
+                          value={year} 
+                  >
+                    {year} - 2021
+                  </option>
+                ))}
+              </select>
+            </div>
 
-            <select className="browser-default"
-                    id="genreSelect"
-                    onChange={handleGenreChanges}
-            >
-              {genreList.map(genre => (
-                <option key={genre} 
-                        value={genre} 
-                >
-                  {genre}
-                </option>
-              ))}
-            </select>
+            <div className="RatingRange">
+              <label>Genre</label><br/>
+              <select
+                className="browser-default"
+                id="genreSelect"
+                onChange={handleGenreChanges}
+              >
+                <option defaultValue="All">All</option>
+                {genreList.map(genre => (
+                  <option key={genre} 
+                          value={genre} 
+                  >
+                    {genre}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="RatingRange">
+              <label>Sort</label><br/>
+              <select
+                className="browser-default"
+                id="genreSelect"
+                // onChange={handleRatingChanges}
+              >
+                <option defaultValue="All">None</option>
+                <option defaultValue="title asc">A - Z</option>
+                <option defaultValue="title desc">Z - A</option>
+                <option defaultValue="year desc">Newest</option>
+                <option defaultValue="year asc">Oldest</option>
+                <option defaultValue="rating desc">Most Popular</option>
+                <option defaultValue="rating asc">Least Popular</option>
+              </select>
+            </div>
+
           </div>
         );
       }}

@@ -29,7 +29,7 @@ const SearchView = () => {
     let isMounted = true;
     const fetchMovies = async () => {
       try {
-  console.log(searchTerms);
+  // console.log(searchTerms);
         
         const res = isMounted && (await axios.post("/search/movies", searchTerms));
         if (res.data.length !== 0) {
