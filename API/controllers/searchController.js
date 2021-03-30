@@ -18,7 +18,7 @@ const search = async (req, res) => {
         } else if (sorting === 'rating asc') {
             sort['rating'] = 1;
         } else {
-            sort['title'] = 1;
+            sort['rating'] = -1;
         }
 
         const skip = limit * (page - 1);
@@ -40,7 +40,6 @@ const search = async (req, res) => {
             
         movieList = await MovieModel.aggregate(queryTerms);
         res.status(200).json(movieList);
-        // console.log(movieList);
         
     } catch (error) {
         console.log(error.message);
