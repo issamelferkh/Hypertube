@@ -2,65 +2,67 @@ import React, { useContext } from "react";
 import "./Filter.css";
 import Slider from "rc-slider";
 import { GlobalContext } from "../../context/GlobalContext";
-import SearchContext from '../../context/SearchContext'
+import SearchContext from "../../context/SearchContext";
 
-const Filter = ({ ratings, genre }) => {
+const Filter = ({ ratings, years, genre }) => {
 
-  const ratingsList = [
-    'All',
-    '9',
-    '8',
-    '7',
-    '6',
-    '5',
-    '4',
-    '3',
-    '2',
-    '1',
-    '0',
-  ]
+  var yearList = [];
+  yearList.push('All');
+  var i = 2021;
+  while(i >= 1900)
+  {
+    yearList.push(i);
+    i--;
+  } 
+  const ratingsList = ["9", "8", "7", "6", "5", "4", "3", "2", "1"];
 
   const genreList = [
-    'All',
-    'Action',
-    'Adventure',
-    'Animation',
-    'Comedy',
-    'Crime',
-    'Documentary',
-    'Drama',
-    'Family',
-    'Fantasy',
-    'History',
-    'Horror',
-    'Music',
-    'Musical',
-    'Mystery',
-    'Romance',
-    'Sci-Fi',
-    'Sport',
-    'Thriller',
-    'War',
-    'Western'
-  ]
+    "All",
+    "Action",
+    "Adventure",
+    "Animation",
+    "Comedy",
+    "Crime",
+    "Documentary",
+    "Drama",
+    "Family",
+    "Fantasy",
+    "History",
+    "Horror",
+    "Music",
+    "Musical",
+    "Mystery",
+    "Romance",
+    "Sci-Fi",
+    "Sport",
+    "Thriller",
+    "War",
+    "Western",
+  ];
 
   const searchTerms = useContext(SearchContext);
 
 
+  const handleYearChanges = (e) => {
+    console.log(e.target.value);
+    if (e.target.value !== "All") {
+      years([e.target.value.toLowerCase(), 2021]);
+    } else {
+      years("All");
+    }
+  };
 
-  const handleRatingChanges = e => {
-    console.log(e.target.value)
-    if (e.target.value !== "All")
-    {
-      ratings([e.target.value.toLowerCase(),10]);
+  const handleRatingChanges = (e) => {
+    console.log(e.target.value);
+    if (e.target.value !== "All") {
+      ratings([e.target.value.toLowerCase(), 10]);
     } else {
       ratings("All");
     }
   };
 
-  const handleGenreChanges = e => {
-    if (e.target.value !== "All")
-    {
+  const handleGenreChanges = (e) => {
+    if (e.target.value !== "All") {
       genre(e.target.value.toLowerCase());
     } else {
       genre("All");
@@ -68,11 +70,11 @@ const Filter = ({ ratings, genre }) => {
   };
 
   const createSliderWithTooltip = Slider.createSliderWithTooltip;
-  //const Range = createSliderWithTooltip(Slider.Range);
+  const Range = createSliderWithTooltip(Slider.Range);
 
   return (
     <GlobalContext.Consumer>
-      {context => {
+      {(context) => {
         const locale = context.locale;
         var lang;
         switch (locale) {
@@ -91,51 +93,48 @@ const Filter = ({ ratings, genre }) => {
         return (
           <div className="all">
 
-            {/* <div className="RatingRange">
-              <label>{lang.search[0].rating}</label>
-              <Range
-                min={0}
-                max={10}
-                allowCross={false}
-                defaultValue={searchTerms.ratings}
-                // defaultValue={searchTerms.ratings}
-                onAfterChange={handleRatingChanges}
-              />
-            </div> */}
 
 
-            <select className="browser-default"
-                    id="genreSelect"
-                    onChange={handleGenreChanges}
+
+
+            <select
+              className="browser-default"
+              id="yearSelect"
+              onChange={handleYearChanges}
             >
-              {genreList.map(genre => (
-                <option key={genre} 
-                        value={genre} 
-                >
+              {yearList.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
+
+
+
+
+            <select
+              className="browser-default"
+              id="genreSelect"
+              onChange={handleGenreChanges}
+            >
+              {genreList.map((genre) => (
+                <option key={genre} value={genre}>
                   {genre}
                 </option>
               ))}
             </select>
 
-
-
-            <select className="browser-default"
-                    id="ratingSelect"
-                    onChange={handleRatingChanges}
+            <select
+              className="browser-default"
+              id="ratingSelect"
+              onChange={handleRatingChanges}
             >
-              {ratingsList.map(ratings => (
-                <option key={ratings} 
-                        value={ratings} 
-                >
+              {ratingsList.map((ratings) => (
+                <option key={ratings} value={ratings}>
                   {ratings}
                 </option>
               ))}
             </select>
-
-
-
-
-
           </div>
         );
       }}
