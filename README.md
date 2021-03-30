@@ -1,41 +1,13 @@
 # Hypertube
 
-filtered:
-Genres: select list
-IMDb: starts
+<option defaultValue="All">None</option> =>  default sort ???
+<option defaultValue="title asc">A - Z</option>
+<option defaultValue="title desc">Z - A</option>
+<option defaultValue="year desc">Newest</option>
+<option defaultValue="year asc">Oldest</option>
+<option defaultValue="rating desc">Most Popular</option>
+<option defaultValue="rating asc">Least Popular</option>
 
-      "title": "9+",
-      "imdb": 9
-    },
-    {
-      "title": "8+",
-      "imdb": 8
-    },
-    {
-      "title": "7+",
-      "imdb": 7
-    },
-    {
-      "title": "6+",
-      "imdb": 6
-    },
-    {
-      "title": "5+",
-      "imdb": 5
-    }
-
-    
-Year Released: select list: Issue
-
-
-
-
-
-sortable: select list
-A-Z
-Z-A
-IMDb
-Year Released: OK
 
 
 

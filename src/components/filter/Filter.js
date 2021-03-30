@@ -4,7 +4,7 @@ import Slider from "rc-slider";
 import { GlobalContext } from "../../context/GlobalContext";
 import SearchContext from '../../context/SearchContext'
 
-const Filter = ({ ratings, years, genre }) => {
+const Filter = ({ sorting, ratings, years, genre }) => {
 
   const ratingsList = [
     '9',
@@ -81,8 +81,14 @@ const Filter = ({ ratings, years, genre }) => {
     }
   };
 
-  // const createSliderWithTooltip = Slider.createSliderWithTooltip;
-  // const Range = createSliderWithTooltip(Slider.Range);
+  const handleSortingChanges = e => {
+    if (e.target.value !== "All")
+    {
+      sorting(e.target.value);
+    } else {
+      sorting("All");
+    }   
+  };
 
   return (
     <GlobalContext.Consumer>
@@ -162,15 +168,15 @@ const Filter = ({ ratings, years, genre }) => {
               <select
                 className="browser-default"
                 id="genreSelect"
-                // onChange={handleRatingChanges}
+                onChange={handleSortingChanges}
               >
                 <option defaultValue="All">None</option>
-                <option defaultValue="title asc">A - Z</option>
-                <option defaultValue="title desc">Z - A</option>
-                <option defaultValue="year desc">Newest</option>
-                <option defaultValue="year asc">Oldest</option>
-                <option defaultValue="rating desc">Most Popular</option>
-                <option defaultValue="rating asc">Least Popular</option>
+                <option value="title asc">A - Z</option>
+                <option value="title desc">Z - A</option>
+                <option value="year desc">Newest</option>
+                <option value="year asc">Oldest</option>
+                <option value="rating desc">Most Popular</option>
+                <option value="rating asc">Least Popular</option>
               </select>
             </div>
 

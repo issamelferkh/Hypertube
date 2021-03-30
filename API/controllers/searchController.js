@@ -2,17 +2,25 @@ const MovieModel = require('../schemas/Movie');
 
 const search = async (req, res) => {
     try {
-        const { genre, ratings, years, page, limit, keywords } = req.body;
-        // console.log("genre: " + genre);
-        // console.log("ratings: " + ratings);
-        // console.log("years: " + years);
-        // console.log("page: " + page);
-        // console.log("limit: " + limit);
-        // console.log("keywords: " + keywords);
-        // console.log("######################################################");
-        
-        const sorting = {};
-        sorting['rating'] = -1;
+        const { sorting, genre, ratings, years, page, limit, keywords } = req.body;      
+        const sort = {};
+
+        if (sorting === 'title asc') {
+            sort['title'] = 1;
+        } else if (sorting === 'title desc') {
+            sort['title'] = -1;
+        } else if (sorting === 'year desc') {
+            sort['year'] = -1;
+        } else if (sorting === 'year asc' ) {
+            sort['year'] = 1;
+        } else if (sorting === 'rating desc' ) {
+            sort['rating'] = -1;
+        } else if (sorting === 'rating asc') {
+            sort['rating'] = 1;
+        } else {
+            sort['title'] = 1;
+        }
+
         const skip = limit * (page - 1);
         const count = limit * page;
         const queryTerms = [
@@ -20,7 +28,7 @@ const search = async (req, res) => {
                 year: { $gte: parseInt(years[0]), $lte: parseInt(years[1]) },
                 rating: { $gte: parseInt(ratings[0]), $lte: parseInt(ratings[1]) }
             }},
-            { $sort: sorting },
+            { $sort: sort },
             { $limit: count },
             { $skip: skip },
         ]
@@ -29,7 +37,6 @@ const search = async (req, res) => {
             queryTerms.unshift({ $match: { ...queryTerms.$match, title: { $regex: keywords, $options: "i"}}});
         if (genre !== 'All')
             queryTerms.unshift({ $match: { ...queryTerms.$match, genres: genre.toLowerCase()}});
-            // console.log("Query Terms"+JSON.stringify(queryTerms));
             
         movieList = await MovieModel.aggregate(queryTerms);
         res.status(200).json(movieList);

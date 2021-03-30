@@ -82,6 +82,14 @@ const SearchView = () => {
       genre: genre
     });
   };
+  const sorting = sorting => {
+    setSearchResult({ movies: [] });
+    setSearchTerms({
+      ...searchTerms,
+      page: 1,
+      sorting: sorting
+    });
+  };
 
   useEffect(() => {
     let isMounted = true;
@@ -121,7 +129,7 @@ const SearchView = () => {
         {searchResult ? (
           <div className="layer">
             <Search search={search} />
-            <Filter ratings={ratings} years={years} genre={genre} />
+            <Filter sorting={sorting} ratings={ratings} years={years} genre={genre} />
             <div className="infiniteScroll" id="infiniteScroll">
               {searchResult.movies.map((movie, index) => (
                 <Link
