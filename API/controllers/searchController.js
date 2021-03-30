@@ -10,7 +10,7 @@ const search = async (req, res) => {
         const queryTerms = [
             { $match: {
                 year: { $gte: years[0], $lte: years[1] },
-                rating: { $gte: ratings[0], $lte: ratings[1] }
+                rating: { $gte: Number.parseInt(ratings[0]) }
             }},
             { $sort: sorting },
             { $limit: count },
@@ -20,9 +20,12 @@ const search = async (req, res) => {
             queryTerms.unshift({ $match: { ...queryTerms.$match, title: { $regex: keywords, $options: "i"}}});
         if (genre !== 'All')
             queryTerms.unshift({ $match: { ...queryTerms.$match, genres: genre.toLowerCase()}});
-            console.log("Query Terms"+JSON.stringify(queryTerms));
+           // console.log("Query Terms"+JSON.stringify(queryTerms));
             
+
         movieList = await MovieModel.aggregate(queryTerms);
+       // console.log("Rating: ===> ", ratings);
+       // console.log("MV LIST: ===> ",movieList)
         res.status(200).json(movieList);
         // console.log(movieList);
         

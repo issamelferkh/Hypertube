@@ -4,13 +4,21 @@ import Slider from "rc-slider";
 import { GlobalContext } from "../../context/GlobalContext";
 import SearchContext from '../../context/SearchContext'
 
-const Filter = ({ ratings, years, genre }) => {
+const Filter = ({ ratings, genre }) => {
 
-  const yearList = [
-    '2021',
-    '2020',
-    '2019'
-  ] 
+  const ratingsList = [
+    'All',
+    '9',
+    '8',
+    '7',
+    '6',
+    '5',
+    '4',
+    '3',
+    '2',
+    '1',
+    '0',
+  ]
 
   const genreList = [
     'All',
@@ -38,17 +46,16 @@ const Filter = ({ ratings, years, genre }) => {
 
   const searchTerms = useContext(SearchContext);
 
-  const handleRatingChanges = value => {
-    ratings(value);
-  };
 
-  const handleYearChanges = e => {
-    if(e.target.value !== "Year") {
-      years(e.target.value);
+
+  const handleRatingChanges = e => {
+    console.log(e.target.value)
+    if (e.target.value !== "All")
+    {
+      ratings([e.target.value.toLowerCase(),10]);
     } else {
-      years([1900, 2021]);
+      ratings("All");
     }
-    // years(value);
   };
 
   const handleGenreChanges = e => {
@@ -61,7 +68,7 @@ const Filter = ({ ratings, years, genre }) => {
   };
 
   const createSliderWithTooltip = Slider.createSliderWithTooltip;
-  const Range = createSliderWithTooltip(Slider.Range);
+  //const Range = createSliderWithTooltip(Slider.Range);
 
   return (
     <GlobalContext.Consumer>
@@ -83,7 +90,8 @@ const Filter = ({ ratings, years, genre }) => {
         }
         return (
           <div className="all">
-            <div className="RatingRange">
+
+            {/* <div className="RatingRange">
               <label>{lang.search[0].rating}</label>
               <Range
                 min={0}
@@ -93,31 +101,8 @@ const Filter = ({ ratings, years, genre }) => {
                 // defaultValue={searchTerms.ratings}
                 onAfterChange={handleRatingChanges}
               />
-            </div>
-            {/* <div className="YearRange">
-              <label>{lang.search[0].year}</label>
-              <Range
-                min={1915}
-                max={2019}
-                allowCross={true}
-                defaultValue={searchTerms.years}
-                onAfterChange={handleYearChanges}
-              />
             </div> */}
 
-            <select
-              className="browser-default" id="genreSelect"
-              onChange={handleYearChanges}
-            >
-              <option defaultValue="Year">Year</option>
-              {yearList.map(year => (
-                <option key={year} 
-                        value={year} 
-                >
-                  {year}
-                </option>
-              ))}
-            </select>
 
             <select className="browser-default"
                     id="genreSelect"
@@ -131,6 +116,26 @@ const Filter = ({ ratings, years, genre }) => {
                 </option>
               ))}
             </select>
+
+
+
+            <select className="browser-default"
+                    id="ratingSelect"
+                    onChange={handleRatingChanges}
+            >
+              {ratingsList.map(ratings => (
+                <option key={ratings} 
+                        value={ratings} 
+                >
+                  {ratings}
+                </option>
+              ))}
+            </select>
+
+
+
+
+
           </div>
         );
       }}
