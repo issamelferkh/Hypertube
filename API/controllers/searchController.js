@@ -5,7 +5,11 @@ const search = async (req, res) => {
         const { sorting, genre, ratings, years, page, limit, keywords } = req.body;      
         const sort = {};
 
-        if (sorting === 'title asc') {
+        // if search -> result sortable with title
+        if (keywords !== '' && !sorting) {
+            sort['title'] = 1;
+        }
+        else if (sorting === 'title asc') {
             sort['title'] = 1;
         } else if (sorting === 'title desc') {
             sort['title'] = -1;
@@ -17,7 +21,7 @@ const search = async (req, res) => {
             sort['rating'] = -1;
         } else if (sorting === 'rating asc') {
             sort['rating'] = 1;
-        } else {
+        } else { // if not search -> result sortable with most rating
             sort['rating'] = -1;
         }
 

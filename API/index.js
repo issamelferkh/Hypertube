@@ -81,7 +81,7 @@ app.use("/auth", require("./controllers/auth"));
 app.use("/movie", movieRoutes.router);
 app.use("/comment", commentRoutes.router);
 
-// Refresh DB everyday at 15:15 AM
+// Refresh DB everyday at 12:15 AM
 schedule.scheduleJob("0 15 0 * * *", () => {
   Scrap();
 })

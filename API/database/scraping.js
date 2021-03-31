@@ -24,7 +24,6 @@ async function connectDB() {
 const scrapYTS = async () => {
   const raw = [];
   for (let i = 1; i <= 583; i++) {
-    //267
     const res = await axios.get(
       // `https://yts.lt/api/v2/list_movies.json?limit=50&page=${i}`
       `https://yts.mx/api/v2/list_movies.json?limit=50&page=${i}`
@@ -72,8 +71,7 @@ const scrapYTS = async () => {
 
 const scrapPopcorn = async () => {
   const raw = [];
-  for (let i = 1; i <= 2; i++) {
-    //271
+  for (let i = 1; i <= 271; i++) {
     try {
       const res = await axios.get(
         `http://api.pctapi.com/list`
@@ -185,5 +183,3 @@ const Scrap = async () => {
 };
 
 module.exports = Scrap;
-
-

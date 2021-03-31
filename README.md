@@ -1,14 +1,5 @@
 # Hypertube
-
-<option defaultValue="All">None</option> =>  default sort ???
-<option defaultValue="title asc">A - Z</option>
-<option defaultValue="title desc">Z - A</option>
-<option defaultValue="year desc">Newest</option>
-<option defaultValue="year asc">Oldest</option>
-<option defaultValue="rating desc">Most Popular</option>
-<option defaultValue="rating asc">Least Popular</option>
-
-
+    - Le résultat d'une recherche doit être affiché sous forme de miniatures triées par nom.
 
 
 ## Hyper Plan
@@ -43,23 +34,20 @@
 - Consult the profile of any other user, ie see the profile picture and information. The email address however will remain private.
 
 ### Ven: [ ] Finish Library Part
-- Removing movies not seen for at least 1 month && Scraping +++
-
-
-- there is big space at the right it get bigger when you make the window smaller
-class="infiniteScroll"
-- you checked the rating and year? 
-- check sort and filter
-
 - Bibliothèque
   - Accès
-    - La bibliothèque n'est accessible qu'aux utilisateurs connectés ?
+    - La bibliothèque n'est accessible qu'aux utilisateurs connectés
+      - how it work sty logged ?
 
   - Affichage par défaut
+    - scrap ?
+    - affiche ?
     - Par défaut, lorsqu'aucune recherche n'a été effectuée, la bibliothèque doit afficher les miniatures des medias les plus populaires des sources gérées pas l'application. Cette liste doit être triée (selon un critère choisi par les soutenus).
+      - sort from DB ?
 
   - Les miniatures
     - Les miniatures doit être composée du nom de la video, ainsi que, si disponible, de son année de production, de sa note et d'une image de couverture.
+      - ?
     - Sur les medias les plus populaires, toutes ces infos devraient logiquement être disponibles.
     - Les vidéos vues doivent être clairement différenciées des vidéos non vues.
 
@@ -71,20 +59,6 @@ class="infiniteScroll"
     - Le moteur de recherche doit interroger au minimum deux sources externes distinctes, et limiter les résultats aux videos.
     - Le résultat d'une recherche doit être affiché sous forme de miniatures triées par nom.
     - Essayez de chercher une vidéo, vous pouvez avoir un exemple avec `curl http://www.randomlists.com/random-movies\?qty\=1 | cat | ruby -e "p gets.match(/port'>([^<]*)/)[1]"`.
-
-- infinity scroll -> Issue (next page)
-- sort ok
-- filter ok
-- two API
-- video detail -> VideoPlayer -> Issue
-- video lunch -> VideoPlayer -> Issue
-
-
-
-- [ ] This part can only be accessible to connected users. -> check URL manipulation after finish part user
-- This part will have at minimum:
-  - [x] A research field.
-  - [x] A thumbnails list.
 
 #### Research
 - [ ] The search engine will interrogate at least two external sources of your choice.
