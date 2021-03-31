@@ -104,7 +104,7 @@ var customLanguage = {
           "browser dialk ma ki suportich 7awl t updati",
         no_source: "ma kin ta source 3la 9bal had video",
         theater_release: "Theater release:",
-        duration: "cha7al fih:",
+        duration: "cha7al tchaf:",
         director: "mo5rij:",
         starring: "badya:",
         synopsis: "Synopsis:"
